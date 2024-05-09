@@ -20,7 +20,7 @@ const App = () => {
           color: "white",
           paddingTop: "10px",
           // borderRadius:"15px"
-          borderRadius:"15px"
+          borderRadius: "15px",
         }}
       >
         {/* <h3 className="w3-bar-item">Gear Up Garage</h3> */}
@@ -30,14 +30,28 @@ const App = () => {
           width={200}
           height={30}
         /> */}
-        <button className="w3-bar-item w3-button" onClick={()=>{navigate("/Today_orders_emp");}}>
-        
-          Today Orders
+        <button
+          className="w3-bar-item w3-button"
+          onClick={() => {
+            navigate("/dashboard_emp");
+          }}
+        >
+          Home
         </button>
-        <a href="#" className="w3-bar-item w3-button">
-          Payment
-        </a>
-        <button className="w3-bar-item w3-button" onClick={()=>{navigate("/Settings_emp");}}>
+        <button
+          className="w3-bar-item w3-button"
+          onClick={() => {
+            navigate("/Today_orders_emp");
+          }}
+        >
+          Orders
+        </button>
+        <button
+          className="w3-bar-item w3-button"
+          onClick={() => {
+            navigate("/Settings_emp");
+          }}
+        >
           Account
         </button>
       </div>

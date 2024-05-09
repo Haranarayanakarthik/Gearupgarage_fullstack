@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Sidebar_cus.css"; // Ensure your styles are in this CSS file
 import logo from "../../photos/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -9,6 +10,7 @@ const App = () => {
     setSidebarOpen(!isSidebarOpen);
   };
 
+  const navigate = useNavigate();
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <div
@@ -29,16 +31,24 @@ const App = () => {
           style={{ padding: "10px 20px 30px 20px" }}
           width={200}
           height={30}
-        /> */}
-        <a href="#" className="w3-bar-item w3-button">
+        /> */}<button  className="w3-bar-item w3-button" onClick={() => {
+            navigate("/dashboard_cus");
+          }}>
+          Home
+        </button>
+        <button  className="w3-bar-item w3-button" onClick={() => {
+            navigate("/Appointment");
+          }}>
           Appointment
-        </a>
-        <a href="#" className="w3-bar-item w3-button">
-          History
-        </a>
-        <a href="#" className="w3-bar-item w3-button">
-          Offers
-        </a>
+        </button>
+        <button
+          className="w3-bar-item w3-button"
+          onClick={() => {
+            navigate("/Settings_cus");
+          }}
+        >
+          Account
+        </button>
       </div>
 
       <div style={{ flex: 1 }}>

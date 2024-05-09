@@ -7,7 +7,7 @@ function App() {
       <div style={{ display: "flex" }}>
         <Sidebar />
         <div style={{width:"100vw"}}>
-          <h1 style={{textAlign:"center"}}>My Table</h1>
+          <h1 style={{textAlign:"center"}}>Orders</h1>
           <MyTable />
         </div>
       </div>

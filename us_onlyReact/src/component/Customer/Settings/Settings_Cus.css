@@ -1,0 +1,27 @@
+.Settings_Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+.Settings_Container  input[type=submit]{
+    border-radius: 15px;
+    background-color :#70B6FF;
+    border: none;
+    padding: 10px 25px;
+}
+.Settings_Container > div{
+    padding: 15px;
+}
+.fname,.lname,.email,.password{
+    margin: 10px ;
+}
+.email{
+    margin-left: 43px;
+}
+.password{
+    margin-left: 17px;
+}

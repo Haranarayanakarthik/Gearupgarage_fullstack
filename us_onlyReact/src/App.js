@@ -14,9 +14,11 @@ import About from "./Pages/About/About.jsx";
 import Table from "./component/Employee/Table/Table_main.jsx";
 import ForgetPassword from "./Pages/Forgetpass.jsx";
 import Sidebar from "./component/Sidebar_Cus/Sidebar_cus.jsx";
-import Dashboard from "./Pages/Dashboard_cus.jsx";
+import Dashboard from "./component/Customer/Dashboard_cus.jsx";
 import Dashboard_emp from "./component/Employee/Dashboard_emp.jsx";
-import Settings_emp from "./component/Employee/Settings/Settings_Emp.jsx";
+import Appointment from "./component/Customer/Forma.jsx"
+import Settings_cus from "./component/Customer/Settings/Settings_Cus.jsx";
+import Settings_Emp from "./component/Employee/Settings/Settings_Emp.jsx";
 function App() {
   const [user, setUser] = useState(null);
 
@@ -30,8 +32,10 @@ function App() {
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/dashboard_cus" element={user ? <Dashboard user={user} /> : <Navigate to="/login" />} />
           <Route path="/dashboard_emp" element={user ? <Dashboard_emp user={user} /> : <Navigate to="/login" />} />
-          <Route path="/Settings_emp" element={user ? <Settings_emp user={user} /> : <Navigate to="/login" />} />
+          <Route path="/Settings_cus" element={user ? <Settings_cus user={user} /> : <Navigate to="/login" />} />
           <Route path="/Today_orders_emp" element={user ? <Table user={user} /> : <Navigate to="/login" />} />
+          <Route path="/Appointment" element={user ? <Appointment user={user} /> : <Navigate to="/login" />} />
+          <Route path="/Settings_emp" element={user ? <Settings_Emp user={user} /> : <Navigate to="/login" />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/service" element={<Service />} />
           <Route path="/faq" element={<Faq />} />

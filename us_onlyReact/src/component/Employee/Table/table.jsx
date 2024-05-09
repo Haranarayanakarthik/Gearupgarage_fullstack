@@ -1,48 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MyTable.css"; // Import CSS file for table styling
 
 function MyTable() {
+  const [appointments, setAppointments] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3001/get_appointments")
+      .then((res) => res.json())
+      .then((data) => {
+        setAppointments(data);
+      });
+  }, []);
+
   return (
-    <table className="my-table" style={{width:"100%",marginRight:"20px"}}>
+    <table className="my-table" style={{ width: "100%", marginRight: "20px" }}>
       <thead>
         <tr>
           <th>S No</th>
           <th>Service</th>
           <th>Address</th>
-          <th>Payment method</th>
-          <th>Completion</th>
-          <th>Complaints</th>
-          <th>Submit</th>
+          <th>Payment</th>
+          <th>PhoneNumber</th>
+          <th>Email</th>
         </tr>
       </thead>
       <tbody>
-        <th>1</th>
-        <th>Service</th>
-        <th>Address</th>
-        <th>
-          <select name="Payment" id="Payment" required>
-            <option value="" disabled selected>
-              Payment
-            </option>
-            <option value="Cash">Cash</option>
-            <option value="Money">Money</option>
-          </select>
-        </th>
-        <th>
-        <select name="Complete" id="Complete" required>
-            <option value="" disabled selected>
-            Complete
-            </option>
-            <option value="Completed">Completed</option>
-            <option value="Not Completed">Not Completed</option>
-          </select>
-        </th>
-        <th>
-          <input type="text" />
-        </th>
-        <th>
-          <input type="submit" value="Submit"/>
-        </th>
+        {appointments.map((appointment, index) => (
+          <tr key={index}>
+            <td style={{textAlign:"center"}}>{index + 1}</td>
+            {/* Map over the problem array and display either value or label */}
+            <td style={{textAlign:"center"}}>
+              {appointment.problem.map((problem, idx) => (
+                <span key={idx}>{problem.value}<br/></span>
+              ))}
+            </td>
+            <td style={{textAlign:"center"}}>{appointment.address}</td>
+            <td style={{textAlign:"center"}}>
+            {appointment.price}
+            </td>
+            <td style={{textAlign:"center"}}>
+            {appointment.phoneNumber}
+            </td>
+            <td style={{textAlign:"center"}}>
+            {appointment.email}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

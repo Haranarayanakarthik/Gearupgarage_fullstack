@@ -1,6 +1,6 @@
 // Dashboard Component
 import React from "react";
-import Sidebar from "../component/Sidebar_Cus/Sidebar_cus"
+import Sidebar from "../Sidebar_Cus/Sidebar_cus"
 const Dashboard = ({ user }) => {
   return (
 <div style={{ display: "flex" }}>
