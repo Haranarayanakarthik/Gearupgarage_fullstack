@@ -1,0 +1,32 @@
+
+.w3-bar-item {
+    border: none;
+    display: block;
+    padding: 10px 20px;
+    text-align: left;
+    background: none;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .w3-bar-item:hover {
+    background-color: #70B6FF;
+    border-radius: 15px;
+    color: black !important; 
+  }
+
+
+  .w3-button {
+    font-size: 24px;
+    background-color: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    border: none;
+    /* background-color: pink; */
+  }
+  
+  .w3-button:hover {
+    color:#70B6FF;
+}

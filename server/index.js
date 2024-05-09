@@ -13,46 +13,69 @@ mongoose.connect(
 );
 
 //Login
+//Login
 app.post("/login", (req, res) => {
-    const { email, password } = req.body;
-    let success = false; // Corrected variable name
-    let Employee = "Password Not Correct";
-    EmployeeModel.findOne({ email: email }).then((employee) => {
+  const { email, password } = req.body;
+  let user = null;
+
+  EmployeeModel.findOne({ email: email })
+    .then((employee) => {
       if (employee && employee.password === password) {
-        success = true;
-        Employee = "You are Employee";
+        user = { name: employee.email, type: "Employee" };
         console.log("Employee login successful");
       }
-    }).then(() => { // chaining promise to execute next findOne
-      if (!success) { // If success is already true, no need to search further
-        CustomerModel.findOne({ email: email }).then((customer) => {
-          if (customer && customer.password === password) {
-            success = true;
-            Employee = "You are Customer"
-            console.log("Customer login successful");
-          }
-        }).then(() => {
-          if (success) {
-            res.json(Employee);
-            console.log("Login Success");
-          } else {
-            res.status(401).json("Invalid email or password");
-            console.log("Login failed");
-          }
-        }).catch(err => {
-          console.error("Error:", err);
-          res.status(500).json("Internal Server Error");
-        });
-      } else { // success is true, so there's no need to continue searching
-        res.json(Employee);
+    })
+    .then(() => {
+      if (!user) {
+        CustomerModel.findOne({ email: email })
+          .then((customer) => {
+            if (customer && customer.password === password) {
+              user = { name: customer.email, type: "Customer" };
+              console.log("Customer login successful");
+            }
+          })
+          .then(() => {
+            if (user) {
+              res.json({ success: true, user });
+              console.log("Login Success");
+            } else {
+              res
+                .status(401)
+                .json({ success: false, message: "Invalid email or password" });
+              console.log("Login failed");
+            }
+          })
+          .catch((err) => {
+            console.error("Error:", err);
+            res.status(500).json("Internal Server Error");
+          });
+      } else {
+        res.json({ success: true, user });
         console.log("Login Success");
       }
-    }).catch(err => {
+    })
+    .catch((err) => {
       console.error("Error:", err);
       res.status(500).json("Internal Server Error");
     });
-  });
-  
+});
+
+//get values for a specific user
+app.get("/get_values_employee", (req, res) => {
+  const { email } = req.query; // Access email from query parameters
+  EmployeeModel.findOne({ email: email })
+    .then((employee) => {
+      if (employee) {
+        res.send(employee);
+      } else {
+        res.status(404).send("Employee not found");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      res.status(500).send("Internal Server Error");
+    });
+});
 
 //Forgot Password
 app.post("/forgetPassword", (req, res) => {

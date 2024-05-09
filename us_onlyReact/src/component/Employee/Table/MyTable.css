@@ -1,0 +1,8 @@
+.my-table {
+    border-collapse: collapse;
+}
+
+.my-table th, .my-table td {
+    border: 1px solid black;
+    padding: 15px;
+}
