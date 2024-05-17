@@ -26,6 +26,8 @@ export default function AnimatedMulti({ user }) {
     const mail = user.name;
     const date = new Date();
     const complete = false;
+    
+  const backendUrl = process.env.REACT_APP_Backend_URL;
     const data = {
       email: mail,
       address,
@@ -36,7 +38,7 @@ export default function AnimatedMulti({ user }) {
       completed: complete,
     };
     try {
-      const response = await fetch("http://localhost:3001/insert_appointment", {
+      const response = await fetch(`${backendUrl}/insert_appointment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

@@ -3,13 +3,16 @@ import "./Settings_Emp.css";
 import Sidebar from "../Sidebar_Emp/Sidebar_Emp";
 const Settings_Emp = ({ user }) => {
   const [userData, setUserData] = useState(null);
+  
+  const backendUrl = process.env.REACT_APP_Backend_URL;
+  console.log(backendUrl);  
   useEffect(() => {
     const fetchData = async () => {
       const data = { email: user.name };
 
       try {
         const response = await fetch(
-          `http://localhost:3001/get_values_employee?email=${data.email}`
+          `${backendUrl}/get_values_employee?email=${data.email}`
         );
 
         if (!response.ok) {

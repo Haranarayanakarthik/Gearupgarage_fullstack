@@ -4,10 +4,12 @@ const SignUp = () => {
   const [first_name, setfirst_name] = useState("");
   const [last_name, setlast_name] = useState("");
   const [email, setemail] = useState("");
+  const backendUrl = process.env.REACT_APP_Backend_URL;
+  console.log(backendUrl);  
   const handlesubmit = (e) => {
     e.preventDefault();
     const data = { first_name, last_name, email };
-    fetch("http://localhost:3001/forgetPassword", {
+    fetch(`${backendUrl}/forgetPassword`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),

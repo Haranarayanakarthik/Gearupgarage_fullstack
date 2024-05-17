@@ -3,8 +3,10 @@ import "./MyTable.css"; // Import CSS file for table styling
 
 function MyTable() {
   const [appointments, setAppointments] = useState([]);
+  const backendUrl = process.env.REACT_APP_Backend_URL;
+  console.log(backendUrl);  
   useEffect(() => {
-    fetch("http://localhost:3001/get_appointments")
+    fetch(`${backendUrl}/get_appointments`)
       .then((res) => res.json())
       .then((data) => {
         setAppointments(data);

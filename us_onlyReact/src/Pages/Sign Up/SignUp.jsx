@@ -7,11 +7,13 @@ const SignUp = () => {
   const [role, setrole] = useState("");
   const [password, setpassword] = useState("");
   console.log(role);
+  const backendUrl = process.env.REACT_APP_Backend_URL;
+  console.log(backendUrl);  
   const handlesubmit = (e) => {
     e.preventDefault();
     if (role === "Customer") {
       const data = { first_name, last_name, email, password };
-      fetch("http://localhost:3001/Customer_register", {
+      fetch(`${backendUrl}/Customer_register`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(data),
@@ -25,7 +27,7 @@ const SignUp = () => {
         .catch((error) => console.log(error));
     }else if(role === "Mechanic"){
       const data = { first_name, last_name, email, password };
-      fetch("http://localhost:3001/Employee_register", {
+      fetch(`${backendUrl}/Employee_register`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(data),

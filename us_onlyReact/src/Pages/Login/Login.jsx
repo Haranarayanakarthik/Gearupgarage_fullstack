@@ -7,11 +7,13 @@ const Login = ({ setUser }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const backendUrl = process.env.REACT_APP_Backend_URL;
+  console.log(backendUrl);  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { email, password };
     try {
-      const response = await fetch("http://localhost:3001/login", {
+      const response = await fetch(`${backendUrl}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
