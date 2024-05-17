@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const cors = require("cors");
+const port = process.env.PORT || 3001;
 const EmployeeModel = require("./Models/Employee");
 const CustomerModel = require("./Models/Customer");
 const AppointmentModel = require("./Models/Appointmant")
@@ -12,10 +13,6 @@ app.use(cors());
 mongoose.connect(
   `mongodb+srv://${process.env.db_UserName}:${process.env.db_Password}@gearupgarage.sikcj3n.mongodb.net/?retryWrites=true&w=majority&appName=GearUpGarage`
 );
-
-// AppointmentModel.createCollection.then(function (collection) { 
-//   console.log('Collection is created!'); 
-// });
 
 //Login
 app.post("/login", (req, res) => {
@@ -151,6 +148,6 @@ app.post("/Employee_register", (req, res) => {
     .catch((err) => res.json(err));
 });
 
-app.listen(3001, () => {
+app.listen(port, () => {
   console.log("Server is Running");
 });
